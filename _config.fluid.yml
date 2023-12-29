@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Fsmt blog
 subtitle: ''
 description: ''
 keywords:
@@ -110,3 +110,15 @@ index:
 
 navbar:
   blog_title: Fsmt blog
+
+post:
+  comments:
+    enable: true
+    type: utterances
+
+utterances:
+  repo: firstmetcs/blog-comments
+  issue_term: pathname
+  label: #
+  theme: github-light
+  crossorigin: anonymous
