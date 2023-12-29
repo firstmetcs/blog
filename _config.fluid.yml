@@ -102,3 +102,11 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+index:
+  slogan:
+    enable: true
+    text: 共同进步 Fsmt
+
+navbar:
+  blog_title: Fsmt blog
