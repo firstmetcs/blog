@@ -18,3 +18,7 @@ utterances:
   label: #
   theme: github-light
   crossorigin: anonymous
+
+web_analytics:  # 网页访问统计
+  enable: true
+  baidu: cedb334c71d9c14c4f0337d5e60aa43c
