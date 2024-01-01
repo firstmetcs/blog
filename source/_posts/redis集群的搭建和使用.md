@@ -57,14 +57,16 @@ docker -v
 docker pull redis
 ```
 查看镜像
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041054161974.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041134460712.jpg)
+
 ### 获取并修改redis配置文件
 下面的命令会拉取最新的官方版本的redis镜像
 redis官方提供了一个配置文件样例，通过wget工具下载下来。我用的root用户，就直接下载到用户主目录里了。
 ```bash
 wget http://download.redis.io/redis-stable/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041054602567.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135167568.jpg)
+
 配置文件修改以下几项：
 ```conf
 # 注释这一行，表示Redis可以接受任意ip的连接
@@ -145,21 +147,24 @@ docker run -d -p 6379:6379 --name redis -v /hzero/repo/redis/redis-master.conf:/
 ```bash
 docker run -d -p 6380:6379 --name redis-slave -v /hzero/repo/redis/redis-slave.conf:/usr/local/redis.conf redis redis-server /usr/local/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041057343422.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135441097.jpg)
+
 ### 测试（验证主从复制）
 使用以下命令进入redis的容器：
 ```bash
 docker exec -it redis bash
 ```
 使用redis-cli进入容器，查看现有的key，可以看到为空
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041057699643.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135641014.jpg)
+
 在此服务器环境设置一个新key并查看：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041057838269.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135822950.jpg)
+
 此时只在主服务器上设置了key，在从服务器应该自动复制过去一份，我们使用以下命令进入从服务器：
 ```bash
 docker exec -it redis-slave bash
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041058036992.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041136048755.jpg)
 可以看到从服务器已经复制了主服务器上的key
 至此，主从集群模式的redis已经搭建成功。
 # Redis哨兵模式的集群
@@ -172,7 +177,8 @@ docker exec -it redis-slave bash
   本文介绍基于docker和redis-sentinel的高可用redis集群搭建，大多数情况下，redis-sentinel也需要做高可用，这里先对redis搭建一主二从环境，另外需要3个redis-sentinel监控redis master。
 很显然，只使用单个redis-sentinel进程来监控redis集群是不可靠的，由于redis-sentinel本身也有single-point-of-failure-problem(单点问题)，当出现问题时整个redis集群系统将无法按照预期的方式切换主从。官方推荐：一个健康的集群部署，至少需要3个Sentinel实例。另外，redis-sentinel只需要配置监控redis master，而集群之间可以通过master相互通信。
 实际可靠的redis集群拓扑图如下：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041058788884.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041143259228.jpg)
+
 ### redis-sentinel
 redis-sentinel作为独立的服务，用于管理多个redis实例，该系统主要执行以下三个任务：
 * 监控 (Monitor): 检查redis主、从实例是否正常运作
@@ -193,18 +199,22 @@ docker run -d --net host --name redis-slave-1 -v /hzero/repo/redis/redis-slave-1
 ```bash
 docker run -d --net host --name redis-slave-2 -v /hzero/repo/redis/redis-slave-2.conf:/usr/local/redis.conf redis redis-server /usr/local/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041059998154.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041136777053.jpg)
+
 进入主服务器可以看到：
 主服务器正确识别到两个slave：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041060119123.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137001865.jpg)
+
 两个slave也正确的挂载到了master上：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041060234617.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137220816.jpg)
+
 ### 获取并修改sentinel配置
 通过wget命令获取sentinel的配置文件：
 ```bash
 wget http://download.redis.io/redis-stable/sentinel.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041060500335.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137436776.jpg)
+
 修改配置文件以下几项
 ```conf
 
@@ -221,26 +231,30 @@ sentinel monitor mymaster 35.236.172.131 6379 2
 docker run -it --name sentinel --net host -v /hzero/repo/redis/sentinel.conf:/usr/local/etc/redis/sentinel.conf -d redis redis-sentinel /usr/local/etc/redis/sentinel.conf
 ```
 其中/hzero/repo/redis/sentinel.conf为下载并修改的配置文件的位置，/usr/local/etc/redis/sentinel.conf是docker容器中配置文件的位置，redis-sentinel /usr/local/etc/redis/sentinel.conf表示在容器启动时使用配置文件启动哨兵
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041060966744.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137620410.jpg)
+
 通过日志可以查看到，两个slave通过设置的master的监控正确的被sentinel识别到。
 ### 测试sentinel
 重新开一个shell并且停掉master：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061211217.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137796268.jpg)
 
 通过sentinel的日志可以看到哨兵判断6379端口的master下线，并且开始投票选举新的master，选举完毕后将主服务器切换到了新的master上，然后将其他的还在线的从服务器挂载到新的master上面去。
 
 此时登陆新的master查看集群信息：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061356662.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137983846.jpg)
+
 可以看到原本的slave-2角色已经由slave转换为master，原本的slave-1也已经挂载到了新的master上：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061452911.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138164977.jpg)
 
 此时重启原来的master，它并不会重新作为master运行，在哨兵的控制下他会以slave的角色挂载到新的master上。
 查看sentinel日志可以看到：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061603505.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138338332.jpg)
+
 再进入新的主服务器可以查看原来的master已经作为slave角色挂载：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061708077.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138554218.jpg)
+
 进入原来的主服务器也可以查看角色已经切换为了slave
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041061805901.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138708495.jpg)
 
 至此，哨兵模式下的redis集群已经搭建完毕！
 # springboot整合redis哨兵模式
