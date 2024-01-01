@@ -57,7 +57,7 @@ docker -v
 docker pull redis
 ```
 查看镜像
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041134460712.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041197194105.jpg)
 
 ### 获取并修改redis配置文件
 下面的命令会拉取最新的官方版本的redis镜像
@@ -65,7 +65,7 @@ redis官方提供了一个配置文件样例，通过wget工具下载下来。�
 ```bash
 wget http://download.redis.io/redis-stable/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135167568.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041197616545.jpg)
 
 配置文件修改以下几项：
 ```conf
@@ -147,7 +147,7 @@ docker run -d -p 6379:6379 --name redis -v /hzero/repo/redis/redis-master.conf:/
 ```bash
 docker run -d -p 6380:6379 --name redis-slave -v /hzero/repo/redis/redis-slave.conf:/usr/local/redis.conf redis redis-server /usr/local/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041135441097.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041191763913.jpg)
 
 ### 测试（验证主从复制）
 使用以下命令进入redis的容器：
@@ -199,7 +199,7 @@ docker run -d --net host --name redis-slave-1 -v /hzero/repo/redis/redis-slave-1
 ```bash
 docker run -d --net host --name redis-slave-2 -v /hzero/repo/redis/redis-slave-2.conf:/usr/local/redis.conf redis redis-server /usr/local/redis.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041136777053.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041198144097.jpg)
 
 进入主服务器可以看到：
 主服务器正确识别到两个slave：
@@ -213,7 +213,7 @@ docker run -d --net host --name redis-slave-2 -v /hzero/repo/redis/redis-slave-2
 ```bash
 wget http://download.redis.io/redis-stable/sentinel.conf
 ```
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137436776.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041199997668.jpg)
 
 修改配置文件以下几项
 ```conf
@@ -231,12 +231,12 @@ sentinel monitor mymaster 35.236.172.131 6379 2
 docker run -it --name sentinel --net host -v /hzero/repo/redis/sentinel.conf:/usr/local/etc/redis/sentinel.conf -d redis redis-sentinel /usr/local/etc/redis/sentinel.conf
 ```
 其中/hzero/repo/redis/sentinel.conf为下载并修改的配置文件的位置，/usr/local/etc/redis/sentinel.conf是docker容器中配置文件的位置，redis-sentinel /usr/local/etc/redis/sentinel.conf表示在容器启动时使用配置文件启动哨兵
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137620410.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041194762289.jpg)
 
 通过日志可以查看到，两个slave通过设置的master的监控正确的被sentinel识别到。
 ### 测试sentinel
 重新开一个shell并且停掉master：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041137796268.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041187993663.jpg)
 
 通过sentinel的日志可以看到哨兵判断6379端口的master下线，并且开始投票选举新的master，选举完毕后将主服务器切换到了新的master上，然后将其他的还在线的从服务器挂载到新的master上面去。
 
@@ -248,7 +248,7 @@ docker run -it --name sentinel --net host -v /hzero/repo/redis/sentinel.conf:/us
 
 此时重启原来的master，它并不会重新作为master运行，在哨兵的控制下他会以slave的角色挂载到新的master上。
 查看sentinel日志可以看到：
-![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138338332.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041199018578.jpg)
 
 再进入新的主服务器可以查看原来的master已经作为slave角色挂载：
 ![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/01/17041138554218.jpg)
