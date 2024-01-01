@@ -1,0 +1,63 @@
+name: Hexo build and deploy
+
+on:
+  push:
+    branches: 
+     - blog
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      with:
+        persist-credentials: false
+        # checkout到你的hexo代码分支
+        ref: blog
+        # hexo需要加载内部子模块
+        submodules: true
+    - name: Setup Node        
+      uses: actions/setup-node@v1
+      with:
+        node-version: "18"
+
+    - name: Config Key
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 700 ~/.ssh
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git config --global user.email "824311265@qq.com"
+        git config --global user.name "firstmetcs"
+        
+    - name: NPM install       
+      run: |
+        npm install hexo-cli -g
+        npm install
+
+    - name: Hexo Deploy           
+      run: |
+        hexo clean
+        hexo g
+        hexo d
+        
+    # - name: Install and Build
+    #   run: |
+    #     npm install
+    #     npm run build
+        
+    # - name: Deploy to aliyun server
+    #   uses: easingthemes/ssh-deploy@v2.0.7
+    #   env:
+    #     SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SERVER_ACCESS_TOKEN }}
+    #     ARGS: "-avz --delete"
+    #     SOURCE: "public"
+    #     REMOTE_HOST: ${{ secrets.ALIYUN_SERVER_HOST }}
+    #     REMOTE_USER: "root"
+    #     TARGET: "/root/dist/"
