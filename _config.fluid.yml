@@ -22,3 +22,12 @@ utterances:
 web_analytics:  # 网页访问统计
   enable: true
   baidu: cedb334c71d9c14c4f0337d5e60aa43c
+
+about:
+  enable: true
+  avatar: https://firstmetcs.net/5.06ZF05/img/ava.jpg
+  name: "firstmetcs"
+  intro: "共同进步 Fsmt"
+  icons:
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/firstmetcs', tip: 'GitHub' }
+    - { class: 'iconfont icon-mini-program-fill', link: 'https://firstmetcs.net', tip: 'fsmt' }
