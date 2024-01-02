@@ -11,6 +11,8 @@ post:
   comments:
     enable: true
     type: utterances
+  updated:
+    enable: true
 
 utterances:
   repo: firstmetcs/blog-comments
