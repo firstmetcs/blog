@@ -33,3 +33,6 @@ about:
   icons:
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/firstmetcs', tip: 'GitHub' }
     - { class: 'iconfont icon-mini-program-fill', link: 'https://firstmetcs.net', tip: 'fsmt' }
+
+favicon: /img/f.png
+apple_touch_icon: /img/f.png
