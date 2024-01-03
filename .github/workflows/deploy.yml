@@ -54,7 +54,7 @@ jobs:
           access-key-id: ${{ secrets.OSS_KEY }}
           access-key-secret: ${{ secrets.OSS_SECRET }}
     - name: cp files to aliyun
-      run: ossutil cp -rf public oss://fsmt-blog-site.oss-cn-beijing.aliyuncs.com/
+      run: ossutil cp -rf public oss://fsmt-blog-site/
 
     # - name: Install and Build
     #   run: |
