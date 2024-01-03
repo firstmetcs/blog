@@ -47,6 +47,15 @@ jobs:
         hexo g
         hexo d
         
+    - name: setup aliyun oss
+      uses: manyuanrong/setup-ossutil@master
+      with:
+          endpoint: oss-cn-beijing.aliyuncs.com
+          access-key-id: ${{ secrets.OSS_KEY }}
+          access-key-secret: ${{ secrets.OSS_SECRET }}
+    - name: cp files to aliyun
+      run: ossutil cp -rf public oss://fsmt-blog-site.oss-cn-beijing.aliyuncs.com/
+
     # - name: Install and Build
     #   run: |
     #     npm install
