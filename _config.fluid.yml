@@ -36,3 +36,11 @@ about:
 
 favicon: /img/f.png
 apple_touch_icon: /img/f.png
+
+footer:
+  content: '© 2015-2023 <a href="https://firstmetcs.net" target="_blank">firstmetcs.net</a>版权所有'
+  beian:
+    enable: true
+    icp_text: 京ICP备2023003449号
+    police_text: 京公网安备11010502051927号
+    police_code: 11010502051927
