@@ -9,7 +9,7 @@ description: '共同进步 Fsmt'
 keywords: Fsmt blog,共同进步 Fsmt,Fsmt,fsmt,firstmetcs
 author: firstmetcs
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
