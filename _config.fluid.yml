@@ -13,6 +13,9 @@ post:
     type: utterances
   updated:
     enable: true
+  copyright:
+    license: 'BY-NC-SA'
+
 
 utterances:
   repo: firstmetcs/blog-comments
