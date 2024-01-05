@@ -47,3 +47,6 @@ footer:
     icp_text: 京ICP备2023003449号
     police_text: 京公网安备11010502051927号
     police_code: 11010502051927
+
+custom_js: //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js
+#custom_js: //cdn.jsdelivr.net/gh/hustcc/ribbon.js/dist/ribbon.min.js
