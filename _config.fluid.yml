@@ -79,3 +79,9 @@ links:
       avatar: '/img/f.png'
     }
   default_avatar: /img/avatar.png
+  custom:
+    enable: true
+    content: '<hr><p>朋友，你好呀！</p><p>你可以在下方留言来加入我的友链，提供的信息参考：</p><ul><li>博客名：Fluid</li><li>简介：Fluid 主题官方博客</li><li>链接：https://hexo.fluid-dev.com</li><li>图片：https://hexo.fluid-dev.com/img/favicon.png</li></ul>本站信息请评论区一楼👇🏻！'
+  comments:
+    enable: true
+    type: utterances
