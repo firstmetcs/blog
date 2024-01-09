@@ -6,6 +6,13 @@ index:
 
 navbar:
   blog_title: Fsmt blog
+  menu:
+    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+    - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 post:
   comments:
@@ -50,3 +57,25 @@ footer:
 
 custom_js: //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js
 #custom_js: //cdn.jsdelivr.net/gh/hustcc/ribbon.js/dist/ribbon.min.js
+
+links:
+  items:
+    - {
+      title: 'Hexo Docs',
+      intro: '快速、简洁且高效的博客框架',
+      link: 'https://hexo.io/',
+      avatar: 'https://hexo.io/logo.svg'
+    }
+    - {
+      title: 'Fluid Docs',
+      intro: '主题使用指南',
+      link: 'https://hexo.fluid-dev.com/docs/',
+      avatar: 'https://hexo.fluid-dev.com/docs/fluid_hexo.png'
+    }
+    - {
+      title: 'Firstmetcs',
+      intro: '秋水静轩',
+      link: 'https://firstmetcs.net',
+      avatar: '/img/f.png'
+    }
+  default_avatar: /img/avatar.png
