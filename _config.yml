@@ -104,3 +104,13 @@ deploy:
   type: git
   repository: git@github.com:firstmetcs/firstmetcs.github.io.git
   branch: blog
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 20
+    hub:
+    content:
+    content_limit:
+    content_limit_delim: ' '
+
