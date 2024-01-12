@@ -43,6 +43,7 @@ about:
   icons:
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/firstmetcs', tip: 'GitHub' }
     - { class: 'iconfont icon-mini-program-fill', link: 'https://firstmetcs.net', tip: 'fsmt' }
+    - { class: 'iconfont icon-rss-fill', link: 'https://blog.firstmetcs.net/atom.xml', tip: 'RSS' }
 
 favicon: /img/f.png
 apple_touch_icon: /img/f.png
