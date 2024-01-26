@@ -4,6 +4,7 @@ excerpt: 本文主要记录了家庭公网 IP 的申请和配置（以上海电�
 date: 2024-01-26 14:07:20
 index_img: https://fsmt-blog.oss-cn-beijing.aliyuncs.com/cover/public-ip.png
 banner_img: https://fsmt-blog.oss-cn-beijing.aliyuncs.com/cover/public-ip.png
+category_bar: true
 tags:
 - 网络设备
 - 公网IP

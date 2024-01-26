@@ -22,7 +22,9 @@ post:
     enable: true
   copyright:
     license: 'BY-NC-SA'
-
+  category_bar:
+    enable: true
+    specific: true
 
 utterances:
   repo: firstmetcs/blog-comments
