@@ -2,6 +2,7 @@
 title: redis集群的搭建和使用
 date: 2024-01-01 18:30:20
 updated: 2024-01-02 11:06:37
+excerpt: 本篇知识分享主要讲述使用docker搭建redis集群，其中包含redis简单主从模式、哨兵模式和springboot整合redis集群等，适合初学者入门搭建和使用参考。
 index_img: http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/02/17041646180484.jpg
 banner_img: http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/02/17041646180484.jpg
 tags:
