@@ -80,7 +80,7 @@ categories:
 ![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/26/17062495616937.jpg)
 
 ## 路由器配置 DDNS（以 pandavan 为例）
-前面提到了 DDNS 依赖路由器的主动修改，所以就需要给路由器一个腾讯云的 token，路由器可以通过这个 token 将自己当前的 IP 地址上报到腾讯云。腾讯云的管理 token 可以从[这里](https://sspai.com/link?target=https%253A%252F%252Fconsole.cloud.tencent.com%252Fcam%252Fcapi)获取。
+前面提到了 DDNS 依赖路由器的主动修改，所以就需要给路由器一个腾讯云的 token，路由器可以通过这个 token 将自己当前的 IP 地址上报到腾讯云。腾讯云的管理 token 可以从[这里](https://console.cloud.tencent.com/cam/capi)获取。
 ![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2024/01/26/17062495797258.jpg)
 
 # 公网 IP 的应用
@@ -89,7 +89,7 @@ categories:
 
 最简单的方式是直接将远程桌面的端口通过端口映射暴露到公网上，这样就可以通过 IP 或者域名直连了，就像内网访问那样。但是由于 RDP 协议本身的安全性问题，在公网使用 RDP 存在一定危险性，有中勒索病毒的风险。虽然我的 NAS 上没有什么重要的资料，但是中了勒索病毒就需要清盘重装系统还是比较麻烦的。我们可以搭建 SSH 隧道，然后通过 SSH 隧道运行 RDP，大大提高了安全性。
 
-SSH 隧道也叫 SSH 端口转发，通过在 SSH 客户端与 SSH 服务端之间建立一个隧道，将网络数据通过该隧道转发至指定端口，从而进行网络通信。关于 SSH 隧道的更多信息可以参考[SSH三种隧道方式工作原理详解](https://sspai.com/link?target=https%253A%252F%252Fwww.gui2000.com%252Fwww-notes%252Fnotes-58.html)。
+SSH 隧道也叫 SSH 端口转发，通过在 SSH 客户端与 SSH 服务端之间建立一个隧道，将网络数据通过该隧道转发至指定端口，从而进行网络通信。关于 SSH 隧道的更多信息可以参考[SSH三种隧道方式工作原理详解](https://www.gui2000.com/www-notes/notes-58.html)。
 
 在我们的场景中，首先建立 SSH 隧道将远程设备 的 RDP 协议端口 A（默认是 3389，这里建议修改成其他高位端口）映射到本地设备的端口 B，这样的话所有对本地端口 B 的访问数据都会转发到远程设备的端口 A。
 具体步骤如下：
@@ -124,4 +124,4 @@ ssh ${用户名}@${URL或者路由器公网IP} -p ${远程设备映射到外网�
         -o ServerAliveInterval=60 \
         -o ServerAliveCountMax=3
 ```
-参考：[通过SSH隧道安全建立RDP远程桌面连接(RDP over SSH tunnel)](https://sspai.com/link?target=https%253A%252F%252Fblog.csdn.net%252Fqwe123321123%252Farticle%252Fdetails%252F116504970)
+参考：[通过SSH隧道安全建立RDP远程桌面连接(RDP over SSH tunnel)](https://blog.csdn.net/qwe123321123/article/details/116504970)
