@@ -51,7 +51,7 @@ favicon: /img/f.png
 apple_touch_icon: /img/f.png
 
 footer:
-  content: '<div style="font-size: 0.85rem">© 2015-2023 <a href="https://firstmetcs.net" target="_blank">firstmetcs.net</a> 版权所有</div>'
+  content: '<div style="font-size: 0.85rem">© 2015-<span id="year">2023</span> <a href="https://firstmetcs.net" target="_blank">firstmetcs.net</a> 版权所有</div><script type="text/javascript">function initCopyrightYear() {document.getElementById("year").innerHTML = new Date().getFullYear();}initCopyrightYear();</script>'
   beian:
     enable: true
     icp_text: 京ICP备2023003449号
