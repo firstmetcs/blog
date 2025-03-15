@@ -60,6 +60,8 @@ footer:
 
 custom_js: //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js
 #custom_js: //cdn.jsdelivr.net/gh/hustcc/ribbon.js/dist/ribbon.min.js
+custom_head: '
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"/>'
 
 links:
   items:
