@@ -215,47 +215,47 @@ PT的用户需要`DHT`啥的关掉，我这里就不多说了，如果你是玩P
 既然更新了，再安装个强大的索引器`Jackett`。
 如果不想折腾的话，用内置的索引器一般是够用（需要安装有Chromium内核的版本）的。当然，想搜索更全，那可以安装一个`Jackett`索引器。
 社群套件中已经有了，直接搜索安装。
-![](media/17436406447678.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436406447678.jpg)
 
 输入 `ip:9117` 打开 `Jackett`。
-![](media/17436406627164.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436406627164.jpg)
 
 其他配置基本可以不用动，我们来配置一下 `FlareSolverr API`。为什么装这个服务呢？由于一些索引站点是受`Cloudflare` 等服务保护的，`Jackett`无法解决这个问题，然后就利用`FlareSolverr` 服务来解决这个问题。
 当然你也可以不配置，大部分站点都不用。
-![](media/17436406960071.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436406960071.jpg)
 
 在`docker`中搜索`FlareSolverr`, 下载并安装。
-![](media/17436407148811.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407148811.jpg)
 
 安装的时候记得加个环境变量`TEST_URL`, 启动的时候会连接这个地址来测试连通性，如果无法连通程序就无法启动。
-![](media/17436407264548.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407264548.jpg)
 
 端口映射出来。然后下一步，下一步完成即可。
-![](media/17436407382507.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407382507.jpg)
 
 回到`Jackett中`添加地址。 套件安装的直接用`http://127.0.0.1:8191`就好。
-![](media/17436407568354.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407568354.jpg)
 
 然后我们来添加索引器。
-![](media/17436407683079.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407683079.jpg)
 
 可以通过过滤，找自己需要的种类添加。
-![](media/17436407819744.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407819744.jpg)
 
 私有的，也就是PT，需要账号密码或者`Cookie`，如果你玩PT可以自己设置一下。 我这里加一些公开的站点。 不知道怎么选就全选吧。
-![](media/17436407966360.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436407966360.jpg)
 
 需要一点时间。
-![](media/17436408070823.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436408070823.jpg)
 
 可以点击测试，把一些不通过的，删除了。
-![](media/17436408188140.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436408188140.jpg)
 
 回到 NASTool, 添加API密钥。添加完成后测试一下是否可以连通。
-![](media/17436408299104.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436408299104.jpg)
 
 然后我们去搜索一下，确实很强。
-![](media/17436408427508.jpg)
+![](http://fsmt-blog.oss-cn-beijing.aliyuncs.com/2025/04/03/17436408427508.jpg)
 
 然后就可以开心的下载。
 
